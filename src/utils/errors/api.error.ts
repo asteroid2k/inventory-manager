@@ -4,6 +4,7 @@ import { ApiErrorOptions } from "./types";
 class ApiError extends ModuleError {
   constructor(options: ApiErrorOptions) {
     super(options);
+    this.status = options.status || 400;
   }
   static badRequest(message: string) {
     return new ApiError({ status: 400, message });

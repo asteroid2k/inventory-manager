@@ -6,11 +6,11 @@ import apiRoutesV1 from "../src/routes/v1";
 import constants from "./utils/constants";
 import apiErrorHandler from "./utils/errors/handler";
 
-const { apiV1 } = constants;
+const { API_V1 } = constants;
 const app = express();
-
+app.use(express.json());
 app.use(loggerMiddleware);
-app.use(apiV1, apiRoutesV1);
+app.use(API_V1, apiRoutesV1);
 app.use(apiErrorHandler);
 
 export default app;

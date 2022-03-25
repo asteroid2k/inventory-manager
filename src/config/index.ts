@@ -1,2 +1,4 @@
 import rootPath from "app-root-path";
-export default { rootPath };
+import prisma from "./prisma";
+
+export default { rootPath, prisma };
