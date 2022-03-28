@@ -19,7 +19,9 @@
     "@typescript-eslint/eslint-plugin": "^5.14.0",
     "@typescript-eslint/parser": "^5.14.0",
     "eslint": "^8.10.0",
+    "husky": "^7.0.0",
     "jest": "^27.5.1",
+    "pinst": "^3.0.0",
     "prisma": "^3.11.0",
     "supertest": "^6.2.2",
     "ts-jest": "^27.1.3",
@@ -28,7 +30,12 @@
   },
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only --exit-child  --rs lib/server.ts",
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "postinstall": "husky install",
+    "prepack": "pinst --disable",
+    "postpack": "pinst --enable"
   },
   "dependencies": {
     "@prisma/client": "^3.11.0",
