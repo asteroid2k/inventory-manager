@@ -30,7 +30,7 @@
   },
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only --exit-child  --rs lib/server.ts",
-    "test": "jest",
+    "test": "NODE_CONFIG_ENV=test jest --verbose --runInBand",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "postinstall": "husky install",
@@ -58,6 +58,7 @@
   },
   "_moduleAliases": {
     "@root": ".",
+    "src": "src",
     "@config": "src/config",
     "@controllers": "src/controllers",
     "@middleware": "src/middleware",

@@ -1,14 +1,11 @@
 import { object } from "zod";
 import validators from "@utils/helpers/validators";
-const { requiredString, email, phoneNumber } = validators;
+const { requiredString, email } = validators;
 
-export const createUserSchema = object({
+export const loginSchema = object({
   body: object(
     {
-      firstName: requiredString("First Name"),
-      lastName: requiredString("Last Name"),
       email,
-      phoneNumber,
       password: requiredString("Password", 8),
     },
     { required_error: "Body is required" }

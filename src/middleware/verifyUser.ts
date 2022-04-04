@@ -1,28 +1,35 @@
-import config from "../config";
-import { Request, Response, NextFunction } from "express";
+import { Response, NextFunction, Request } from "express";
 import ApiError from "@utils/errors/api.error";
 import constants from "@utils/constants";
+import { User } from "@prisma/client";
+import UserModel from "../models/user.model";
+const { RESOURCE_EXISTS, INVALID_AUTH_CREDENTIALS } = constants;
 
-const { RESOURCE_EXISTS, RESOURCE_NOT_FOUND } = constants;
-const { prisma } = config;
-
+/**
+ * Checks if user exists
+ * @param {boolean} isFound - specify whether error is thrown if user is found or not
+ */
 const checkUserExists =
   (isFound = true) =>
-  async (req: Request, res: Response, next: NextFunction) => {
+  async (
+    req: Request<{ user: User | null }>,
+    _res: Response,
+    next: NextFunction
+  ) => {
     const { email } = req.body;
-    const exists = await prisma.user
-      .findFirst({ where: { email } })
-      .then((r) => Boolean(r));
-    if (isFound && !exists) {
+    const user = await UserModel.findFirst({ where: { email } });
+
+    if (isFound && !user) {
       throw new ApiError({
-        message: RESOURCE_NOT_FOUND("User"),
+        message: INVALID_AUTH_CREDENTIALS
       });
     }
-    if (!isFound && exists) {
+    if (!isFound && user) {
       throw new ApiError({
-        message: RESOURCE_EXISTS("User"),
+        message: RESOURCE_EXISTS("User")
       });
     }
+    req.params.user = user;
     next();
   };
 

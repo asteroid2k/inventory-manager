@@ -1,5 +1,5 @@
 import ModuleError from "./module.error";
-import { ApiErrorOptions } from "./types";
+import { ApiErrorOptions } from "src/types";
 
 class ApiError extends ModuleError {
   constructor(options: ApiErrorOptions) {

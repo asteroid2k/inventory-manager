@@ -1,4 +1,3 @@
-import constants from "@utils/constants";
 import { NextFunction, Request, Response } from "express";
 import { ZodError } from "zod";
 import ApiError from "./api.error";

@@ -17,6 +17,7 @@ model User {
   email       String   @unique
   phoneNumber String   @unique
   password    String
+  salt        String
   createdAt   DateTime @default(now())
   item        Item[]
 }

@@ -4,3 +4,6 @@
 /logs
 /coverage
 /.yarn
+/prisma/migrations
+.idea
+.DS_Store

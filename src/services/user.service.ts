@@ -1,9 +1,17 @@
-import prisma from "@config/prisma";
-import { createUserInput } from "@schema/user.schema";
+import UserModel from "../models/user.model";
+const { findBy } = UserModel;
 
+/**
+ * Provides services for User resource
+ */
 class UserServices {
-  static create(userData: createUserInput) {
-    return prisma.user.create({ data: userData });
+  /**
+   *
+   * @param {string} email - email value
+   * @returns {Promise<User|null>}
+   */
+  static findByEmail(email: string) {
+    return findBy("email", email);
   }
 }
 export default UserServices;

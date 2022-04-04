@@ -1,4 +1,4 @@
-import { ModuleErrorOptions } from "./types";
+import { ModuleErrorOptions } from "src/types";
 
 class ModuleError extends Error {
   name: string;
